@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: 'roboto';
 }
 
 header {
@@ -25,3 +26,11 @@ header.active {
 header.non-active {
   background-color: blue;
 }
+
+.news-item {
+  padding: 20px;
+  box-sizing: border-box;
+  border-bottom: 2px solid grey;
+}
+
+

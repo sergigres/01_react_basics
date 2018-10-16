@@ -10,19 +10,28 @@ import NewsList from './components/news_list';
 //const App = () => {
 class App extends Component {
     state = {
-      news: JSON
+      news: JSON,
+      filtered: []
+    }
+
+    getKeyword = (event) => {
+      //console.log(event.target.value);
+      let filtered = this.state.news.filter( (item) => {
+        return item.title.indexOf(event.target.value) > -1;
+      });
+      this.setState({ filtered });
     }
 
   render() {
-    console.log(this.state.news);
+    //console.log(this.state.news);
     //return React.createElement('h1', { className: 'title' }, 'Hello world!!'); // className not class!!
     //return React.createElement('div', {  }, React.createElement('h1', { className: 'title' }, 'Hello world!!'));
     //return <h1>Hello world !!!</h1>
     //return <h1>Hello world !!!</h1><div>hola</div> // Fail!!!
     //return (<div className="theClash"><h1>Hello world !!!</h1><div>hola</div></div>); /*you need to enclosure everything in a tag*/
     return (<div>
-              <Header/>
-              <NewsList news={this.state.news}/>
+              <Header keywords={this.getKeyword}/>
+              <NewsList news={this.state.filtered.length === 0 ? this.state.news : this.state.filtered }/>
             </div>);
   }
 }
